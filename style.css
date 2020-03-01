@@ -1,0 +1,11 @@
+.tfview {
+    color: #4f545c;
+    cursor: pointer;
+    margin-left: 2px;
+}
+.tfview:hover {
+    color: rgba(114, 118, 125, .6);
+}
+.tfmodal pre {
+    max-width: 100%;
+}
