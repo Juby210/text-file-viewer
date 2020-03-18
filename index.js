@@ -23,7 +23,7 @@ module.exports = class TextFileViewer extends Plugin {
             res.props.children.push(React.createElement(Receipt, {
                 className: c.anchor + ' tfview',
                 onClick: async () => {
-                    const r = await get(args[0].url), content = r.body.toString()
+                    const r = await get(args[0].url), content = r.raw.toString()
                     open(() => React.createElement(Modal, { content, file: args[0].filename }))
                 }
             }))
