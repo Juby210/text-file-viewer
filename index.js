@@ -6,7 +6,8 @@ const { Icons: { Receipt } } = require('powercord/components')
 const { open } = require('powercord/modal')
 const { get } = require('powercord/http')
 
-const Modal = require('./Modal')
+const ConfirmModal = require('./components/ConfirmModal')
+const Modal = require('./components/Modal')
 
 module.exports = class TextFileViewer extends Plugin {
     async startPlugin() {
@@ -22,9 +23,14 @@ module.exports = class TextFileViewer extends Plugin {
 
             res.props.children.push(React.createElement(Receipt, {
                 className: c.anchor + ' tfview',
-                onClick: async () => {
-                    const r = await get(args[0].url), content = r.raw.toString()
-                    open(() => React.createElement(Modal, { content, file: args[0].filename }))
+                onClick: () => {
+                    const o = async () => {
+                        const r = await get(args[0].url), content = r.raw.toString()
+                        open(() => React.createElement(Modal, { content, file: args[0].filename }))
+                    }
+                    if (args[0].size / 1024 / 1024 > 2)
+                        return open(() => React.createElement(ConfirmModal, { o, size: res.props.children[1].props.children[1].props.children }))
+                    o()
                 }
             }))
 
