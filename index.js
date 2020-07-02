@@ -19,7 +19,6 @@ module.exports = class TextFileViewer extends Plugin {
         }
 
         inject('tfviewer', Attachment, 'default', (args, res) => {
-            console.log(args, res)
             if (!(args[0] &&
                 args[0].filename.match(/\.(?:txt|md|log|c\+\+|cpp|cc|c|h|hpp|mm|m|json|js|jsx|rb|rake|py|asm|fs|cgi|bat|rss|java|kt|graphml|idb|lua|o|gml|prl|sls|conf|cmake|make|sln|vbe|cxx|wbf|vbs|r|wml|php|bash|applescript|fcgi|yaml|ex|exs|sh|ml|actionscript|html|xhtml|htm|js|xml|xls|xsd|css|styl|scss|go|smali|dart)$/)))
                 return res
